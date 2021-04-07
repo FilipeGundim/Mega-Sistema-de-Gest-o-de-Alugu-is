@@ -2,39 +2,39 @@ package models;
 
 import java.util.Date;
 
-public class Client {
-private String name;
-private String tel;
-private Date registeredAt;
+import interfaces.GenericClassMethods;
 
-public Client(String name, String tel) {
-	this.name = name;
-	this.tel = tel;
-	this.setRegisteredAt(new Date());
-}
+public class Client implements GenericClassMethods {
+	private String name;
+	private String tel;
+	private Date registeredAt;
 
-public String getName() {
-	return name;
-}
+	public String getName() {
+		return name;
+	}
 
-public void setName(String name) {
-	this.name = name;
-}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-public String getTel() {
-	return tel;
-}
+	public String getTel() {
+		return tel;
+	}
 
-public void setTel(String tel) {
-	this.tel = tel;
-}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 
-public Date getRegisteredAt() {
-	return registeredAt;
-}
+	public Date getRegisteredAt() {
+		return registeredAt;
+	}
 
-public void setRegisteredAt(Date registeredAt) {
-	this.registeredAt = registeredAt;
-}
+	public void setRegisteredAt(Date registeredAt) {
+		this.registeredAt = registeredAt;
+	}
+
+	public String getAllPropertys() {
+		return "nome: " + getName() + " telefone " + getTel();
+	}
 
 }

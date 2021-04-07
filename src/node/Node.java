@@ -1,12 +1,14 @@
 package node;
 
-public class Node<T> {
+import interfaces.GenericClassMethods;
+
+public class Node<T extends GenericClassMethods> {
 	public T current;
 	public Node<T> next;
 
 	public Node(T current){
 		this.current = current;
-		this.next = null;
+		next = null;
 	}
 
 }

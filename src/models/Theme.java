@@ -1,12 +1,9 @@
 package models;
 
-public class Theme {
+import interfaces.GenericClassMethods;
+
+public class Theme implements GenericClassMethods {
 	private String name;
-
-	public Theme(String name) {
-		this.setName(name);
-
-	}
 
 	public String getName() {
 		return name;
@@ -14,5 +11,11 @@ public class Theme {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String getAllPropertys() {
+		// TODO Auto-generated method stub
+		return "tema: " + getName();
 	}
 }

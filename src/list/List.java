@@ -2,10 +2,11 @@ package list;
 
 import javax.swing.JOptionPane;
 
-import models.LinkedList;
+import interfaces.GenericClassMethods;
+import interfaces.LinkedList;
 import node.Node;
 
-public class List<T> implements LinkedList<T> {
+public class List<T extends GenericClassMethods> implements LinkedList<T> {
 	private Node<T> node;
 
 	public List() {
@@ -102,7 +103,6 @@ public class List<T> implements LinkedList<T> {
 				JOptionPane.showMessageDialog(null, "Posição Inválida!");
 			}
 		}
-
 	}
 
 	@Override
@@ -144,20 +144,19 @@ public class List<T> implements LinkedList<T> {
 				return itemToReturn;
 			}
 		}
-
 	}
 
 	@Override
 	public String showListValues() {
 		// TODO Auto-generated method stub
 		Node<T> aux = this.node;
+		int i = 0;
 		String r = " ";
 		while (aux != null) {
-			r = r + "\n" + aux.current;
+			r += "\n posição: "+ i + " "+  aux.current.getAllPropertys();
 			aux = aux.next;
+			i++;
 		}
 		return r;
-
 	}
-
 }

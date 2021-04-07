@@ -1,23 +1,17 @@
 package models;
 
-import java.util.Date;
+import interfaces.GenericClassMethods;
 
-public class Rent {
+public class Rent implements GenericClassMethods {
 	private String address;
-	private Date date;
+	private String date;
 	private Theme theme;
 
-	public Rent(String address, Date date, Theme theme) {
-		this.address = address;
-		this.date = date;
-		this.theme = theme;
-	}
-
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -35,5 +29,11 @@ public class Rent {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public String getAllPropertys() {
+		// TODO Auto-generated method stub
+		return "data: " + getDate() + " tema: " + getTheme() + " endereço: " + getAddress();
 	}
 }

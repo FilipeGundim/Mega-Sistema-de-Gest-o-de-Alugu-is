@@ -1,6 +1,6 @@
-package models;
+package interfaces;
 
-public interface LinkedList<T> {
+public interface LinkedList<T extends GenericClassMethods> {
 	public boolean isEmpty();
 
 	public void addAtEnd(T item);
