@@ -1,8 +1,8 @@
 package models;
 
-import interfaces.GenericClassMethods;
+import interfaces.IGenericClassMethods;
 
-public class Theme implements GenericClassMethods {
+public class Theme implements IGenericClassMethods {
 	private String name;
 
 	public String getName() {

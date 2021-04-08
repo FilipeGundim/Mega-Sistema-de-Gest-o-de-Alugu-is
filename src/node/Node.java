@@ -1,8 +1,8 @@
 package node;
 
-import interfaces.GenericClassMethods;
+import interfaces.IGenericClassMethods;
 
-public class Node<T extends GenericClassMethods> {
+public class Node<T extends IGenericClassMethods> {
 	public T current;
 	public Node<T> next;
 

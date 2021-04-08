@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface LinkedList<T extends GenericClassMethods> {
+public interface ILinkedList<T extends IGenericClassMethods> {
 	public boolean isEmpty();
 
 	public void addAtEnd(T item);

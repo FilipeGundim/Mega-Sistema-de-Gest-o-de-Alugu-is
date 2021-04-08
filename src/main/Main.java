@@ -1,5 +1,9 @@
 package main;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -15,11 +19,10 @@ public final class Main {
 	static List<Rent> rentList = new List<Rent>();
 	static List<Theme> themeList = new List<Theme>();
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws IOException {
 
-		String clientOptions = "1 - Adicionar cliente \n2 - Excluir cliente \n4 - Adicionar tema \n7 - Adicionar aluguel \n8 - Excluir aluguel \n10 - Sair";
-		int option = Integer.parseInt(JOptionPane.showInputDialog(clientOptions));
+		String userOptions = "1 - Adicionar cliente \n2 - Excluir cliente \n4 - Adicionar tema \n5 - Excluir tema \n7 - Adicionar aluguel \n8 - Excluir aluguel \n10 - Salvar dados \n11 - Sair";
+		int option = Integer.parseInt(JOptionPane.showInputDialog(userOptions));
 
 		while (option != 9) {
 			switch (option) {
@@ -48,12 +51,15 @@ public final class Main {
 				removeRent();
 				break;
 			case 10:
+				createLocalFiles();
+				break;
+			case 11:
 				JOptionPane.showMessageDialog(null, "Programa finalizado");
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Valor inválido");
 			}
-			option = Integer.parseInt(JOptionPane.showInputDialog(clientOptions));
+			option = Integer.parseInt(JOptionPane.showInputDialog(userOptions));
 		}
 
 	}
@@ -68,7 +74,7 @@ public final class Main {
 
 	private static void removeClient() {
 		int position = Integer.parseInt(JOptionPane
-				.showInputDialog(clientList.showListValues() + "\n Digite a posição do cliente que deseja remover"));
+				.showInputDialog(clientList.showListValues() + "\n Digite o código do cliente que deseja remover"));
 		clientList.removeInAnyPosition(position);
 	}
 
@@ -98,4 +104,21 @@ public final class Main {
 		rentList.removeInAnyPosition(position);
 	}
 
+	private static void createLocalFiles() throws IOException {
+		BufferedWriter fwClient = new BufferedWriter(new FileWriter("clients.csv"));
+		BufferedWriter fwTheme = new BufferedWriter(new FileWriter("themes.csv"));
+		BufferedWriter fwRent = new BufferedWriter(new FileWriter("rent.csv"));
+		
+		fwClient.write(clientList.showListValues());
+		fwClient.newLine();
+		fwClient.close();
+		
+		fwTheme.write(themeList.showListValues());
+		fwTheme.newLine();
+		fwTheme.close();
+		
+		fwRent.write(rentList.showListValues());
+		fwRent.newLine();
+		fwRent.close();
+	}
 }

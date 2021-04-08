@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface GenericClassMethods {
+public interface IGenericClassMethods {
 	public String getAllPropertys();
 }

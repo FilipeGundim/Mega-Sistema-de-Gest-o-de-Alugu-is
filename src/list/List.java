@@ -2,11 +2,19 @@ package list;
 
 import javax.swing.JOptionPane;
 
-import interfaces.GenericClassMethods;
-import interfaces.LinkedList;
+import interfaces.IGenericClassMethods;
+import interfaces.ILinkedList;
 import node.Node;
 
-public class List<T extends GenericClassMethods> implements LinkedList<T> {
+// T pode ser qualquer coisa (Client, Rent e  Address respectivamente);
+
+// precisamos que todas as classes tenham um metodo getAllPropertys(), para retornar as props do mesmo, por isso  criamos IGenericClassMethods;
+
+// Criamos a ILinkedList para facilitar a implementação de metodos durante o desenvolvimento do codigo;
+
+// t = type
+
+public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 	private Node<T> node;
 
 	public List() {
@@ -39,7 +47,6 @@ public class List<T extends GenericClassMethods> implements LinkedList<T> {
 
 	@Override
 	public void addAtBeginning(T item) {
-		// TODO Auto-generated method stub
 		Node<T> n = new Node<T>(item);
 		n.next = this.node;
 		this.node = n;
@@ -83,7 +90,6 @@ public class List<T extends GenericClassMethods> implements LinkedList<T> {
 
 	@Override
 	public void addInAnyPosition(T item, int pos) {
-		// TODO Auto-generated method stub
 		Node<T> novo = new Node<T>(item);
 
 		if (pos == 1) {
@@ -148,12 +154,11 @@ public class List<T extends GenericClassMethods> implements LinkedList<T> {
 
 	@Override
 	public String showListValues() {
-		// TODO Auto-generated method stub
 		Node<T> aux = this.node;
 		int i = 0;
 		String r = " ";
 		while (aux != null) {
-			r += "\n posição: "+ i + " "+  aux.current.getAllPropertys();
+			r += "\n codigo: "+ i + " "+  aux.current.getAllPropertys();
 			aux = aux.next;
 			i++;
 		}

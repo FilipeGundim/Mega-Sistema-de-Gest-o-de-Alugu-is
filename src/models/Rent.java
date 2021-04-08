@@ -1,8 +1,8 @@
 package models;
 
-import interfaces.GenericClassMethods;
+import interfaces.IGenericClassMethods;
 
-public class Rent implements GenericClassMethods {
+public class Rent implements IGenericClassMethods {
 	private String address;
 	private String date;
 	private Theme theme;

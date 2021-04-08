@@ -2,9 +2,9 @@ package models;
 
 import java.util.Date;
 
-import interfaces.GenericClassMethods;
+import interfaces.IGenericClassMethods;
 
-public class Client implements GenericClassMethods {
+public class Client implements IGenericClassMethods {
 	private String name;
 	private String tel;
 	private Date registeredAt;
@@ -34,7 +34,7 @@ public class Client implements GenericClassMethods {
 	}
 
 	public String getAllPropertys() {
-		return "nome: " + getName() + " telefone " + getTel();
+		return "nome: " + getName() + "; telefone: " + getTel()+";";
 	}
 
 }
