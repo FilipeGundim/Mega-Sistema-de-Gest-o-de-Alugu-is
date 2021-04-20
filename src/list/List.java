@@ -158,7 +158,7 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 		int i = 0;
 		String r = " ";
 		while (aux != null) {
-			r += "\n codigo: "+ i + "; "+  aux.current.getAllPropertys();
+			r += "\n" + i + ";" + aux.current.getAllPropertys();
 			aux = aux.next;
 			i++;
 		}

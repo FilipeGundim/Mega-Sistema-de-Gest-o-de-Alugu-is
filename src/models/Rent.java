@@ -34,6 +34,6 @@ public class Rent implements IGenericClassMethods {
 	@Override
 	public String getAllPropertys() {
 		// TODO Auto-generated method stub
-		return "data: " + getDate() + " tema: " + getTheme() + " endereço: " + getAddress();
+		return getDate() + ";" + getTheme() + ";" + getAddress();
 	}
 }

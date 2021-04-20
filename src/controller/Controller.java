@@ -1,9 +1,13 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JOptionPane;
 
@@ -17,9 +21,10 @@ public class Controller {
 	private static List<Rent> rentList = new List<Rent>();
 	private static List<Theme> themeList = new List<Theme>();
 
-	public Controller() {
-		// TODO 
-		// read files in constructor and push data in list
+	public Controller() throws IOException, ParseException {
+		this.readAndStoreClients();
+		this.readAndStoreRents();
+		this.readAndStoreThemes();
 	}
 
 	public void addNewClient() {
@@ -78,5 +83,61 @@ public class Controller {
 		fwRent.write(rentList.showListValues());
 		fwRent.newLine();
 		fwRent.close();
+	}
+
+	private void readAndStoreClients() throws IOException, ParseException {
+		BufferedReader brClient = new BufferedReader(new FileReader("clients.csv"));
+
+		String SEPARATOR = ";";
+		String line;
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+		while ((line = brClient.readLine()) != null) {
+			Client client = new Client();
+			String[] values = line.split(SEPARATOR);
+			
+			client.setName(values[1]);
+			client.setTel(values[2]);
+			client.setRegisteredAt(formatter.parse(values[3]));
+		}
+
+		brClient.close();
+	}
+
+	private void readAndStoreRents() throws IOException {
+		BufferedReader brRent = new BufferedReader(new FileReader("rent.csv"));
+
+		String SEPARATOR = ";";
+		String line;
+
+		while ((line = brRent.readLine()) != null) {
+			Rent rent = new Rent();
+			Theme theme = new Theme();
+			
+			String[] values = line.split(SEPARATOR);
+			theme.setName(values[1]);
+			rent.setTheme(theme);
+			rent.setAddress(values[2]);
+			rent.setDate(values[0]);
+		}
+
+		brRent.close();
+	}
+
+	private void readAndStoreThemes() throws IOException {
+		BufferedReader brTheme = new BufferedReader(new FileReader("theme.csv"));
+
+		String SEPARATOR = ";";
+		String line;
+
+		while ((line = brTheme.readLine()) != null) {
+			Theme theme = new Theme();
+			String[] values = line.split(SEPARATOR);
+			
+			theme.setName(values[0]);
+		}
+
+		brTheme.close();
 	}
 }

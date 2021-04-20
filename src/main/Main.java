@@ -1,12 +1,14 @@
 package main;
 
 import java.io.IOException;
+import java.text.ParseException;
+
 import javax.swing.JOptionPane;
 import controller.Controller;
 
 public final class Main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParseException {
 
 		Controller controller = new Controller();
 

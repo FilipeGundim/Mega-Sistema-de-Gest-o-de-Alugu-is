@@ -34,7 +34,7 @@ public class Client implements IGenericClassMethods {
 	}
 
 	public String getAllPropertys() {
-		return "nome: " + getName() + "; telefone: " + getTel()+";";
+		return  getName() + ";" + getTel()+";" + getRegisteredAt() + ";";
 	}
 
 }

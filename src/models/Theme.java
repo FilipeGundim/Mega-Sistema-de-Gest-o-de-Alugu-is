@@ -16,6 +16,6 @@ public class Theme implements IGenericClassMethods {
 	@Override
 	public String getAllPropertys() {
 		// TODO Auto-generated method stub
-		return "tema: " + getName();
+		return getName() + ";";
 	}
 }
