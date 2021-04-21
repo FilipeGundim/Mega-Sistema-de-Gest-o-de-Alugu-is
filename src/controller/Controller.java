@@ -17,9 +17,9 @@ import models.Rent;
 import models.Theme;
 
 public class Controller {
-	private static List<Client> clientList = new List<Client>();
-	private static List<Rent> rentList = new List<Rent>();
-	private static List<Theme> themeList = new List<Theme>();
+	private  List<Client> clientList = new List<Client>();
+	private  List<Rent> rentList = new List<Rent>();
+	private  List<Theme> themeList = new List<Theme>();
 
 	public Controller() throws IOException, ParseException {
 		this.readAndStoreClients();
@@ -56,7 +56,25 @@ public class Controller {
 	public void addNewRent() {
 		Rent rent = new Rent();
 		rent.setDate(JOptionPane.showInputDialog("Informe a data"));
+		
+		// TODO 
+		// filtrar os valores atuais da lista com a data informada
+		
+		Theme  theme = new Theme();
+		theme.setName(JOptionPane.showInputDialog("Informe o tema"));
+		
+		// TODO 
+		// filtrar os valores atuais da lista com a data informada
+		
+		// SE os vallores de temas filtrados .lenght for maior que 0 retornar erro
+		// SE NÃO prosseguir com o aluguel
 		rent.setAddress(JOptionPane.showInputDialog("Informe o endereço"));
+		
+		
+		// TODO 
+		// receber codigo do cliente associado ao aluguel
+		
+	
 		rent.setTheme(null);
 		rentList.addAtBeginning(rent);
 	}
@@ -99,7 +117,8 @@ public class Controller {
 			
 			client.setName(values[1]);
 			client.setTel(values[2]);
-			client.setRegisteredAt(formatter.parse(values[3]));
+			// client.setRegisteredAt(formatter.parse(values[3]));
+			this.clientList.addAtEnd(client);
 		}
 
 		brClient.close();
@@ -114,19 +133,20 @@ public class Controller {
 		while ((line = brRent.readLine()) != null) {
 			Rent rent = new Rent();
 			Theme theme = new Theme();
-			
 			String[] values = line.split(SEPARATOR);
-			theme.setName(values[1]);
+			
+			theme.setName(values[0]);
 			rent.setTheme(theme);
-			rent.setAddress(values[2]);
-			rent.setDate(values[0]);
+			// rent.setAddress(values[2]);
+			// rent.setDate(values[0]);
+			this.rentList.addAtEnd(rent);
 		}
 
 		brRent.close();
 	}
 
 	private void readAndStoreThemes() throws IOException {
-		BufferedReader brTheme = new BufferedReader(new FileReader("theme.csv"));
+		BufferedReader brTheme = new BufferedReader(new FileReader("themes.csv"));
 
 		String SEPARATOR = ";";
 		String line;
@@ -136,6 +156,7 @@ public class Controller {
 			String[] values = line.split(SEPARATOR);
 			
 			theme.setName(values[0]);
+			this.themeList.addAtEnd(theme);
 		}
 
 		brTheme.close();

@@ -156,12 +156,14 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 	public String showListValues() {
 		Node<T> aux = this.node;
 		int i = 0;
-		String r = " ";
+		String lines = "";
 		while (aux != null) {
-			r += "\n" + i + ";" + aux.current.getAllPropertys();
+			lines +=  i + ";" + aux.current.getAllPropertys();
+		//	lines += "\n";
 			aux = aux.next;
 			i++;
 		}
-		return r;
+		System.out.println(this.node.current.getAllPropertys());
+		return lines;
 	}
 }

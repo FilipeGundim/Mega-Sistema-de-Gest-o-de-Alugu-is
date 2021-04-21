@@ -6,6 +6,7 @@ public class Rent implements IGenericClassMethods {
 	private String address;
 	private String date;
 	private Theme theme;
+	private int clientId;
 
 	public String getDate() {
 		return date;
@@ -31,9 +32,17 @@ public class Rent implements IGenericClassMethods {
 		this.address = address;
 	}
 
-	@Override
+	public int getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(int clientId) {
+		this.clientId = clientId;
+	}
+	
 	public String getAllPropertys() {
 		// TODO Auto-generated method stub
 		return getDate() + ";" + getTheme() + ";" + getAddress();
 	}
+
 }

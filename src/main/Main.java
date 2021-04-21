@@ -52,7 +52,5 @@ public final class Main {
 			}
 			option = Integer.parseInt(JOptionPane.showInputDialog(userOptions));
 		}
-
 	}
-
 }
