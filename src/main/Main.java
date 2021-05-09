@@ -4,13 +4,17 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import javax.swing.JOptionPane;
-import controller.Controller;
+
+import controller.ClientController;
+import controller.RentController;
+import controller.ThemeController;
 
 public final class Main {
 
 	public static void main(String[] args) throws IOException, ParseException {
-
-		Controller controller = new Controller();
+		ClientController clientController = new ClientController();
+		RentController rentController = new RentController();
+		ThemeController themeController = new ThemeController();
 
 		String userOptions = "1 - Adicionar cliente \n2 - Excluir cliente \n4 - Adicionar tema \n5 - Excluir tema \n7 - Adicionar aluguel \n8 - Excluir aluguel \n10 - Salvar dados \n11 - Sair";
 		int option = Integer.parseInt(JOptionPane.showInputDialog(userOptions));
@@ -18,31 +22,31 @@ public final class Main {
 		while (option != 11) {
 			switch (option) {
 			case 1:
-				controller.addNewClient();
+				clientController.addNew();
 				break;
 			case 2:
-				controller.removeClient();
+				clientController.remove();
 				break;
 			case 3:
 				// alterar
 				break;
 			case 4:
-				controller.addNewTheme();
+				themeController.addNew();
 				break;
 			case 5:
-				controller.removeTheme();
+				themeController.remove();
 				break;
 			case 6:
 				// alterar
 				break;
 			case 7:
-				controller.addNewRent();
+				rentController.addNew();
 				break;
 			case 8:
-				controller.removeRent();
+				rentController.remove();
 				break;
 			case 10:
-				controller.createLocalFiles();
+				rentController.createLocalFiles();
 				break;
 			case 11:
 				JOptionPane.showMessageDialog(null, "Programa finalizado");

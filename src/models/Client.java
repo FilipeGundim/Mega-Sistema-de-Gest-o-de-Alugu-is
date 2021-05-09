@@ -1,5 +1,6 @@
 package models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import interfaces.IGenericClassMethods;
@@ -34,7 +35,8 @@ public class Client implements IGenericClassMethods {
 	}
 
 	public String getAllPropertys() {
-		return  getName() + ";" + getTel()+";" + getRegisteredAt() + ";";
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return  getName() + ";" + getTel()+";" + formatter.format(getRegisteredAt()) + ";";
 	}
 
 }
