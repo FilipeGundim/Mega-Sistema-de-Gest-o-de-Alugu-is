@@ -31,7 +31,15 @@ public class ThemeController {
 				.showInputDialog(themeList.showListValues() + "\n Digite a posição do tema que deseja remover"));
 		themeList.removeInAnyPosition(position);
 	}
-
+	
+	public void edit() {
+		int position = Integer.parseInt(JOptionPane
+				.showInputDialog(themeList.showListValues() + "\n Digite a posição do tema que deseja editar"));
+		Theme theme = new Theme();
+		theme.setName(JOptionPane.showInputDialog("Informe o novo nome do tema"));
+		themeList.removeInAnyPosition(position);
+		themeList.addInAnyPosition(theme, position);
+	}
 
 	public void createLocalFiles() throws IOException {
 		BufferedWriter fwTheme = new BufferedWriter(new FileWriter("themes.csv"));

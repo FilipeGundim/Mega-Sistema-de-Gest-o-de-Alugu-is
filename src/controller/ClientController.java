@@ -36,7 +36,17 @@ public class ClientController {
 				.showInputDialog(clientList.showListValues() + "\n Digite o código do cliente que deseja remover"));
 		clientList.removeInAnyPosition(position);
 	}
-
+	
+	public void edit() {
+		int position = Integer.parseInt(JOptionPane
+				.showInputDialog(clientList.showListValues() + "\n Digite a posição do cliente que deseja editar"));
+		Client client = new Client();
+		client.setName(JOptionPane.showInputDialog("Informe o novo nome do cliente"));
+		client.setTel(JOptionPane.showInputDialog("Informe o novo telefone do cliente"));
+		clientList.removeInAnyPosition(position);
+		clientList.addInAnyPosition(client, position);
+	}
+	
 	public void createLocalFiles() throws IOException {
 		BufferedWriter fwClient = new BufferedWriter(new FileWriter("clients.csv"));
 

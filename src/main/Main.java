@@ -16,7 +16,7 @@ public final class Main {
 		RentController rentController = new RentController();
 		ThemeController themeController = new ThemeController();
 
-		String userOptions = "1 - Adicionar cliente \n2 - Excluir cliente \n4 - Adicionar tema \n5 - Excluir tema \n7 - Adicionar aluguel \n8 - Excluir aluguel \n10 - Salvar dados \n11 - Sair";
+		String userOptions = "1 - Adicionar cliente \n2 - Excluir cliente \n3 - Editar cliente \n4 - Adicionar tema \n5 - Excluir tema \n6 - Editar tema \n7 - Adicionar aluguel \n8 - Excluir aluguel \n10 - Salvar dados \n11 - Sair";
 		int option = Integer.parseInt(JOptionPane.showInputDialog(userOptions));
 
 		while (option != 11) {
@@ -28,7 +28,7 @@ public final class Main {
 				clientController.remove();
 				break;
 			case 3:
-				// alterar
+				clientController.edit();
 				break;
 			case 4:
 				themeController.addNew();
@@ -37,7 +37,7 @@ public final class Main {
 				themeController.remove();
 				break;
 			case 6:
-				// alterar
+				themeController.edit();
 				break;
 			case 7:
 				rentController.addNew();
