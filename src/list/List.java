@@ -165,4 +165,5 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 		}
 		return lines;
 	}
+
 }

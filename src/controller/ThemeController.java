@@ -15,6 +15,7 @@ import models.Theme;
 public class ThemeController {
 	private List<Theme> themeList = new List<Theme>();
 	private static String SEPARATOR = ";";
+	private static String FILE = "themes.csv";
 
 	public ThemeController() throws IOException, ParseException {
 		this.readAndStore();
@@ -42,7 +43,7 @@ public class ThemeController {
 	}
 
 	public void createLocalFiles() throws IOException {
-		BufferedWriter fwTheme = new BufferedWriter(new FileWriter("themes.csv"));
+		BufferedWriter fwTheme = new BufferedWriter(new FileWriter(FILE));
 
 		fwTheme.write(themeList.showListValues());
 		fwTheme.newLine();
@@ -51,7 +52,7 @@ public class ThemeController {
 
 
 	private void readAndStore() throws IOException {
-		BufferedReader brTheme = new BufferedReader(new FileReader("themes.csv"));
+		BufferedReader brTheme = new BufferedReader(new FileReader(FILE));
 		
 		String line;
 

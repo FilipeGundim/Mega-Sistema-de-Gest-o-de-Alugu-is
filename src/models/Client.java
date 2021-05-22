@@ -9,6 +9,7 @@ public class Client implements IGenericClassMethods {
 	private String name;
 	private String tel;
 	private Date registeredAt;
+	private static String FORMAT = "dd/MM/yyyy";
 
 	public String getName() {
 		return name;
@@ -35,7 +36,7 @@ public class Client implements IGenericClassMethods {
 	}
 
 	public String getAllPropertys() {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat(FORMAT);
 		return  getName() + ";" + getTel()+";" + formatter.format(getRegisteredAt()) + ";";
 	}
 

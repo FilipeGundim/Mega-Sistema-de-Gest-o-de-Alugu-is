@@ -14,6 +14,7 @@ public interface ILinkedList<T extends IGenericClassMethods> {
 	public void addInAnyPosition(T item, int pos);
 
 	public T removeInAnyPosition(int pos);
-	
-	public String showListValues(); 
+
+	public String showListValues();
+
 }

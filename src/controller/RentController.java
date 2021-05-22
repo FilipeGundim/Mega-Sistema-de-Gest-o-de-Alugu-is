@@ -15,6 +15,7 @@ import models.Theme;
 public class RentController {
 	private List<Rent> rentList = new List<Rent>();
 	private static String SEPARATOR = ";";
+	private static String FILE = "rent.csv";
 
 	public RentController() throws IOException, ParseException {
 		this.readAndStore();
@@ -51,7 +52,7 @@ public class RentController {
 	}
 
 	public void createLocalFiles() throws IOException {
-		BufferedWriter fwRent = new BufferedWriter(new FileWriter("rent.csv"));
+		BufferedWriter fwRent = new BufferedWriter(new FileWriter(FILE));
 
 		fwRent.write(rentList.showListValues());
 		fwRent.newLine();
@@ -59,7 +60,7 @@ public class RentController {
 	}
 
 	private void readAndStore() throws IOException {
-		BufferedReader brRent = new BufferedReader(new FileReader("rent.csv"));
+		BufferedReader brRent = new BufferedReader(new FileReader(FILE));
 
 		String line;
 
@@ -71,7 +72,7 @@ public class RentController {
 
 			theme.setName(values[0]);
 			rent.setTheme(theme);
-		//	rent.setAddress(values[2]);
+			// rent.setAddress(values[2]);
 			rent.setDate(values[0]);
 			this.rentList.addAtEnd(rent);
 		}

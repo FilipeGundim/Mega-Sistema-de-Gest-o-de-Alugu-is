@@ -17,6 +17,8 @@ import models.Client;
 public class ClientController {
 	private List<Client> clientList = new List<Client>();
 	private static String SEPARATOR = ";";
+	private static String FORMAT = "dd/MM/yyyy";
+	private static String FILE = "clients.csv";
 
 	public ClientController() throws IOException, ParseException {
 		this.readAndStore();
@@ -36,7 +38,7 @@ public class ClientController {
 				.showInputDialog(clientList.showListValues() + "\n Digite o código do cliente que deseja remover"));
 		clientList.removeInAnyPosition(position);
 	}
-	
+
 	public void edit() {
 		int position = Integer.parseInt(JOptionPane
 				.showInputDialog(clientList.showListValues() + "\n Digite a posição do cliente que deseja editar"));
@@ -46,9 +48,9 @@ public class ClientController {
 		clientList.removeInAnyPosition(position);
 		clientList.addInAnyPosition(client, position);
 	}
-	
+
 	public void createLocalFiles() throws IOException {
-		BufferedWriter fwClient = new BufferedWriter(new FileWriter("clients.csv"));
+		BufferedWriter fwClient = new BufferedWriter(new FileWriter(FILE));
 
 		fwClient.write(clientList.showListValues());
 		fwClient.newLine();
@@ -57,10 +59,10 @@ public class ClientController {
 	}
 
 	private void readAndStore() throws IOException, ParseException {
-		BufferedReader brClient = new BufferedReader(new FileReader("clients.csv"));
+		BufferedReader brClient = new BufferedReader(new FileReader(FILE));
 
 		String line;
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat(FORMAT);
 
 		while ((line = brClient.readLine()) != null) {
 
@@ -76,4 +78,5 @@ public class ClientController {
 
 		brClient.close();
 	}
+
 }
