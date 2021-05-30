@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import interfaces.IGenericClassMethods;
 import interfaces.ILinkedList;
+import models.Client;
 import node.Node;
 
 // T pode ser qualquer coisa (Client, Rent e  Address respectivamente);
@@ -16,6 +17,8 @@ import node.Node;
 
 public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 	private Node<T> node;
+
+	private int lenght = 0;
 
 	public List() {
 		this.node = null;
@@ -35,6 +38,7 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 		if (this.node == null) {
 			Node<T> node = new Node<T>(item);
 			this.node = node;
+			this.lenght += 1;
 		} else {
 			Node<T> aux = this.node;
 			while (aux.next != null) {
@@ -42,6 +46,7 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 			}
 			Node<T> node = new Node<T>(item);
 			aux.next = node;
+			this.lenght += 1;
 		}
 	}
 
@@ -50,6 +55,7 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 		Node<T> n = new Node<T>(item);
 		n.next = this.node;
 		this.node = n;
+		this.lenght += 1;
 	}
 
 	@Override
@@ -73,6 +79,7 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 				aux2.next = null;
 			}
 		}
+		this.lenght -= 1;
 		return itemToReturn;
 	}
 
@@ -85,12 +92,13 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 			itemToReturn = this.node.current;
 			this.node = this.node.next;
 		}
+		this.lenght -= 1;
 		return itemToReturn;
 	}
 
 	@Override
 	public void addInAnyPosition(T item, int pos) {
-		Node<T> novo = new Node<T>(item);
+		Node<T> newItem = new Node<T>(item);
 
 		if (pos == 1) {
 		} else {
@@ -101,10 +109,10 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 				aux = aux.next;
 				count++;
 			}
-
 			if (count == pos - 1) {
-				novo.next = aux.next;
-				aux.next = novo;
+				newItem.next = aux.next;
+				aux.next = newItem;
+				this.lenght += 1;
 			} else {
 				JOptionPane.showMessageDialog(null, "Posição Inválida!");
 			}
@@ -129,7 +137,6 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 				aux = aux.next;
 				i++;
 			}
-
 			if (pos > i || pos <= 0) {
 				JOptionPane.showMessageDialog(null, "Posição Invalida!");
 				return itemToReturn;
@@ -147,6 +154,7 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 				}
 				itemToReturn = aux.current;
 				aux2.next = aux.next;
+				this.lenght -= 1;
 				return itemToReturn;
 			}
 		}
@@ -166,4 +174,17 @@ public class List<T extends IGenericClassMethods> implements ILinkedList<T> {
 		return lines;
 	}
 
+	@Override
+	public Node<T>[] getValues() {
+		Node<T>[] vetor = new Node[this.lenght];
+		Node<T> aux = this.node;
+
+		int i = 0;
+		while (aux != null) {
+			vetor[i] = aux;
+			i++;
+			aux = aux.next;
+		}
+		return vetor;
+	}
 }

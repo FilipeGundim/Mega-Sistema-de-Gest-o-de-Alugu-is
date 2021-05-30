@@ -45,8 +45,14 @@ public final class Main {
 			case 8:
 				rentController.remove();
 				break;
+			case 9:
+				clientController.orderData();
+				;
+				break;
 			case 10:
 				rentController.createLocalFiles();
+				clientController.createLocalFiles();
+				themeController.createLocalFiles();
 				break;
 			case 11:
 				JOptionPane.showMessageDialog(null, "Programa finalizado");

@@ -1,5 +1,7 @@
 package interfaces;
 
+import node.Node;
+
 public interface ILinkedList<T extends IGenericClassMethods> {
 	public boolean isEmpty();
 
@@ -17,4 +19,5 @@ public interface ILinkedList<T extends IGenericClassMethods> {
 
 	public String showListValues();
 
+	public Node<T>[] getValues();
 }

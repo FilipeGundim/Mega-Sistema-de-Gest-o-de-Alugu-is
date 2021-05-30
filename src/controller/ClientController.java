@@ -13,12 +13,13 @@ import javax.swing.JOptionPane;
 
 import list.List;
 import models.Client;
+import node.Node;
 
 public class ClientController {
 	private List<Client> clientList = new List<Client>();
 	private static String SEPARATOR = ";";
 	private static String FORMAT = "dd/MM/yyyy";
-	private static String FILE = "clients.csv";
+	private String FILE = "clients.csv";
 
 	public ClientController() throws IOException, ParseException {
 		this.readAndStore();
@@ -50,7 +51,7 @@ public class ClientController {
 	}
 
 	public void createLocalFiles() throws IOException {
-		BufferedWriter fwClient = new BufferedWriter(new FileWriter(FILE));
+		BufferedWriter fwClient = new BufferedWriter(new FileWriter(this.FILE));
 
 		fwClient.write(clientList.showListValues());
 		fwClient.newLine();
@@ -59,7 +60,7 @@ public class ClientController {
 	}
 
 	private void readAndStore() throws IOException, ParseException {
-		BufferedReader brClient = new BufferedReader(new FileReader(FILE));
+		BufferedReader brClient = new BufferedReader(new FileReader(this.FILE));
 
 		String line;
 		SimpleDateFormat formatter = new SimpleDateFormat(FORMAT);
@@ -69,14 +70,24 @@ public class ClientController {
 			Client client = new Client();
 			String[] values = line.split(SEPARATOR);
 
-			client.setName(values[1]);
-			client.setTel(values[2]);
+			if (values[0].length() > 1) {
+				client.setName(values[1]);
+				client.setTel(values[2]);
+			}
 
 			client.setRegisteredAt(formatter.parse(values[3]));
 			this.clientList.addAtEnd(client);
 		}
 
 		brClient.close();
+	}
+
+	public void orderData() {
+		Node<Client>[] clients = clientList.getValues();
+
+		for (Node<Client> client : clients) {
+			System.out.println(client.current.getAllPropertys());
+		}
 	}
 
 }
