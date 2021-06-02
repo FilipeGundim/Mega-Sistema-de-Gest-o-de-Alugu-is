@@ -47,7 +47,6 @@ public final class Main {
 				break;
 			case 9:
 				clientController.orderData();
-				;
 				break;
 			case 10:
 				rentController.createLocalFiles();

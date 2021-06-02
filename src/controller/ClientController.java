@@ -56,7 +56,6 @@ public class ClientController {
 		fwClient.write(clientList.showListValues());
 		fwClient.newLine();
 		fwClient.close();
-
 	}
 
 	private void readAndStore() throws IOException, ParseException {
@@ -70,24 +69,55 @@ public class ClientController {
 			Client client = new Client();
 			String[] values = line.split(SEPARATOR);
 
-			if (values[0].length() > 1) {
-				client.setName(values[1]);
-				client.setTel(values[2]);
-			}
-
+			client.setName(values[1]);
+			client.setTel(values[2]);
 			client.setRegisteredAt(formatter.parse(values[3]));
 			this.clientList.addAtEnd(client);
 		}
-
 		brClient.close();
 	}
 
 	public void orderData() {
 		Node<Client>[] clients = clientList.getValues();
+		int left = 0;
+		int right = clients.length - 1;
+		this.quickSort(clients, left, right);
+	}
 
-		for (Node<Client> client : clients) {
-			System.out.println(client.current.getAllPropertys());
+	private void quickSort(Node<Client>[] clients, int ini, int end) {
+		int divisao;
+		if (ini < end) {
+			divisao = particao(clients, ini, end);
+			quickSort(clients, ini, divisao - 1);
+			quickSort(clients, divisao + 1, end);
+		}else {
+			for(Node<Client> client : clients) {
+				System.out.println(client.current.getName());
+			}
 		}
 	}
 
+	private int particao(Node<Client>[] clients, int ini, int end) {
+		Node<Client> pivo = clients[ini];
+		int i = ini + 1, f = end;
+		Node<Client> aux;
+		while (i <= f) {
+			while (i <= end && clients[i].current.getName().compareTo(pivo.current.getName()) < 0)
+				++i;
+			while (pivo.current.getName().compareTo(clients[f].current.getName()) < 0)
+				--f;
+			if (i < f) {
+				aux = clients[i];
+				clients[i] = clients[f];
+				clients[f] = aux;
+				++i;
+				--f;
+			}
+		}
+		if (ini != f) {
+			clients[ini] = clients[f];
+			clients[f] = pivo;
+		}
+		return f;
+	}
 }
